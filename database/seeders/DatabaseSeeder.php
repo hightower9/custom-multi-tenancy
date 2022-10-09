@@ -14,6 +14,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        if($_SERVER['argv'][1] != 'tenants:migrate'){
+            return $this->call(LandlordSeeder::class);
+        }
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([
