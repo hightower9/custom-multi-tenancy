@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
+use Symfony\Component\Console\Output\ConsoleOutput;
 
 class LandlordMigrateCommand extends Command
 {
@@ -28,6 +29,11 @@ class LandlordMigrateCommand extends Command
      */
     public function handle()
     {
-        return Artisan::call('migrate --database='.config('database.default').' --path=database/migrations/landlord');
+        $this->info('Started Migration');
+
+        Artisan::call('migrate', ['--path' => 'database/migrations/landlord', '--database' => config('database.default')], new ConsoleOutput);
+        $this->info(Artisan::output());
+
+        $this->info('Migration Successfully');
     }
 }
