@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Models\Tenant;
+use App\Models\Landlord\Tenant;
 use Illuminate\Queue\Events\JobProcessing;
 use Illuminate\Support\ServiceProvider;
 

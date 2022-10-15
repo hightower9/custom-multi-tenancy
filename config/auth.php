@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\Landlord\LandlordUser;
+use App\Models\Tenant\User;
+
 return [
 
     /*
@@ -14,7 +17,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
+        'guard' => 'landlord',
         'passwords' => 'users',
     ],
 
@@ -36,9 +39,13 @@ return [
     */
 
     'guards' => [
-        'web' => [
-            'driver' => 'session',
-            'provider' => 'users',
+        'landlord' => [
+            'driver' => 'sanctum',
+            'provider' => 'landlord-user',
+        ],
+        'tenant' => [
+            'driver' => 'sanctum',
+            'provider' => 'tenant-user',
         ],
     ],
 
@@ -60,15 +67,15 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'landlord-user' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => LandlordUser::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'tenant-user' => [
+            'driver' => 'eloquent',
+            'model' => User::class,
+        ],
     ],
 
     /*
@@ -87,8 +94,15 @@ return [
     */
 
     'passwords' => [
-        'users' => [
-            'provider' => 'users',
+        'landlord-user' => [
+            'provider' => 'landlord-user',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+
+        'tenant-user' => [
+            'provider' => 'tenant-user',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,

@@ -2,8 +2,8 @@
 
 namespace Tests\Feature;
 
-use App\Models\Tenant;
-use App\Models\User;
+use App\Models\Landlord\Tenant;
+use App\Models\Tenant\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 

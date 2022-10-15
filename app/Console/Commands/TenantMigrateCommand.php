@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Tenant;
+use App\Models\Landlord\Tenant;
 use Illuminate\Console\Command;
 
 class TenantMigrateCommand extends Command
